@@ -22,11 +22,8 @@ def wall(request):
             author_id = x.author_id
             
             u = User.objects.get(id=author_id)
-            c = Comment.objects.filter(message=x)
-            print("#"*30)
-            print(User.objects.filter(messages__id=1).values())
-            for g in c:
-                n = 
+            c = Comment.objects.filter(message_id=msgid)
+            
             mix = {
                 "id": x.id,
                 "messagecontext":x.messagecontext,
@@ -35,7 +32,8 @@ def wall(request):
                 "updated_at":x.updated_at,
                 "first_name":u.first_name,
                 "last_name":u.last_name,
-                "comment":c
+                "comment":c,
+                "Message":x
             }
             msg.append(mix)
             # print(c)
@@ -131,3 +129,22 @@ def comment(request,id):
                 this_user= User.objects.get(id=user_id)
                 Comment.objects.create(commentcontext=content, user=this_user, message=this_message)
                 return redirect("/wall")
+
+def delete(request, id):
+    if "user_id" not in request.session:
+        return redirect('/')
+    else:
+        d= Comment.objects.get(id=id)
+        d.delete()
+        return redirect('/wall')
+
+def messagedelete(request, id):
+    print("delete button works")
+    if "user_id" not in request.session:
+        return redirect('/')
+    else:
+        print(id)
+        print("#"*15)
+        d= Message.objects.get(id=id)
+        d.delete()
+        return redirect('/wall')

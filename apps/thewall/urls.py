@@ -7,5 +7,8 @@ urlpatterns = [
     url(r'^wall$', views.wall),
     url(r'^clear$', views.clear),
     url(r'^message$', views.message),
-    url(r'^comment/(?P<id>\d+)$', views.comment)
+    url(r'^comment/(?P<id>\d+)$', views.comment),
+    url(r'^delete/(?P<id>\d+)$', views.delete),
+    url(r'^messagedelete/(?P<id>\d+)$', views.messagedelete)
+
 ]    

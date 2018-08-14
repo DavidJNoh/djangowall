@@ -53,7 +53,7 @@ class Message(models.Model):
 class Comment(models.Model):
     commentcontext = models.TextField()
     user = models.ForeignKey(User, related_name="usercomments")
-    message = models.ForeignKey(Message, related_name="messagecomments")
+    message = models.ForeignKey(Message, related_name="messagecomments", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
